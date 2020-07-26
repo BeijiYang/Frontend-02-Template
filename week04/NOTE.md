@@ -1,3 +1,39 @@
+# 网络
+## ISO-OSI 七层网络模型
+
+应用          HTTP
+表示          HTTP
+会话          HTTP
+传输          TCP
+网络          Internet
+数据链路       4G/5G/WiFi
+物理          4G/5G/WiFi
+
+HTTP require("http")
+TCP  require("net")
+
+### TCP IP
+#### TCP
+* 流 
+  * 没有明显的分割单位，保证前后顺序正确
+* 端口
+  * 计算机的网卡根据端口，把接到的数据包分给各应用
+* require("net")
+  * node 中的 library
+
+#### IP
+* 包
+* IP 地址
+  * 唯一标示了连入网的每个设备，决定数据包从哪儿到哪儿
+* libnet/libpcap
+  * node 底层调用的两个 C++ 库
+  * libnet：构造 IP 包并发送
+  * libpcap：从网卡抓取所有的流经的 IP 包
+
+### HTTP
+* request
+* response
+
 # 课程笔记（注释）
 
 server.js
