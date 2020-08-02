@@ -34,7 +34,17 @@ TCP  require("net")
 * request
 * response
 
-#### encodeURIComponent() 与 encodeURI() 的区别
+### encodeURIComponent() 与 encodeURI()
+
+encodeURI()是Javascript中真正用来对URL编码的函数。
+
+它着眼于对整个URL进行编码，因此除了常见的符号以外，对其他一些在网址中有特殊含义的符号"; / ? : @ & = + $ , #"，也不进行编码。编码后，它输出符号的utf-8形式，并且在每个字节前加上%。
+
+
+它对应的解码函数是decodeURI()。
+
+
+需要注意的是，它不对单引号'编码。
 
 encodeURIComponent() 与 encodeURI()的区别是，它用于对URL的组成部分进行个别编码，而不用于对整个URL进行编码。
 
