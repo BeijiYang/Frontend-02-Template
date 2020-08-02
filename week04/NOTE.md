@@ -34,6 +34,16 @@ TCP  require("net")
 * request
 * response
 
+#### encodeURIComponent() 与 encodeURI() 的区别
+
+encodeURIComponent() 与 encodeURI()的区别是，它用于对URL的组成部分进行个别编码，而不用于对整个URL进行编码。
+
+因此，"; / ? : @ & = + $ , #"，这些在encodeURI()中不被编码的符号，在encodeURIComponent()中统统会被编码。至于具体的编码方法，两者是一样。
+
+![](http://www.ruanyifeng.com/blog/upload/2010/02/bg2010021115.png)
+
+http://www.ruanyifeng.com/blog/2010/02/url_encoding.html
+
 # 课程笔记（注释）
 
 server.js
