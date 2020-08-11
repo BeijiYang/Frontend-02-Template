@@ -1,15 +1,15 @@
 # 网络
 ## ISO-OSI 七层网络模型
 
-应用          HTTP
-表示          HTTP
-会话          HTTP
-传输          TCP
-网络          Internet
-数据链路       4G/5G/WiFi
-物理          4G/5G/WiFi
+应用          HTTP <br/> 
+表示          HTTP <br/>
+会话          HTTP <br/>
+传输          TCP <br/>
+网络          Internet <br/>
+数据链路       4G/5G/WiFi <br/>
+物理          4G/5G/WiFi <br/>
 
-HTTP require("http")
+HTTP require("http") <br/>
 TCP  require("net")
 
 ### TCP IP
