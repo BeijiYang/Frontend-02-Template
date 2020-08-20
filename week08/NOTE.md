@@ -79,6 +79,7 @@
   * insertBefore
   
 这两个搭配，可以插入任意位置。如，有 10 个子节点，形成 11 个可以插入的空隙。insertBefore 可以插前十个，appendChild 可以插第十一个（尾部）。
+
 如果用 appendChild 移动一个 DOM 树中已经存在的节点，该节点会自动先从原位置被 remove，在 append 到相应位置。
 
 * 删 removeChild
@@ -92,39 +93,43 @@
 * cloneNode 复制节点。如果传入参数 true，会做深拷贝（连同子元素）。
 
 ## event API
-target.addEventListener(type, listener, options)
+* target.addEventListener(type, listener, options)
 options： 捕获\冒泡模式; 是否只响应一次；是否产生副作用，如果单纯想监听，可以用
 https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
 
 ## Range API
 强大的微操(可以选中半个节点，tag会被自动补齐)或批量操作能力。
-const range = new Range();
+* const range = new Range();
 
 ### 用 offset 选起止点
-range.setStart(element, 9);
-range.setEnd(element, 4);
+* range.setStart(element, 9);
+* range.setEnd(element, 4);
+
 关于起点和终点：只要保证起点在 DOM 树中先于终点即可（这个先后指哪种顺序？？？），不要求二者在同一层级。
+
 对于起止点的偏移值，对于 element，是其 children 的个数；对于 text，是文字的个数。
+
 是 offset，偏移量，即选在第几个元素的后边。
 
 ### 不用 offset 选起止点
-range.setStartBefore
-range.setEndBefore
-range.setStartAfter
-range.setEndAfter
-range.selectNode // 选中一个元素
-range.selectNodeContents // 选中一个元素所有的内容
+* range.setStartBefore
+* range.setEndBefore
+* range.setStartAfter
+* range.setEndAfter
+* range.selectNode // 选中一个元素
+* range.selectNodeContents // 选中一个元素所有的内容
 
 ### 鼠标选中起止点
-const range = document.getSelection().getRangeAt(0);
+* const range = document.getSelection().getRangeAt(0);
 
 ### 取出 range 里的内容 - 删
 把选取的内容从 DOM 树完全摘下来
+
 取出来的是 fragment 对象。它也是 Node 的子类，可以执行 DOM API 的操作。append 时，仅会把它的所有子节点 append 上去。
-const fragment = range.extractContents();
+* const fragment = range.extractContents();
 
 ### 在 range 的位置插入一个新的节点 - 增
-range.insertNode(document.createTextNode('aaa'));
+* range.insertNode(document.createTextNode('aaa'));
 
 **用例 1**
 ```
@@ -221,7 +226,9 @@ const parent = document.getElementsByClassName('parent')[0];
 
 #### 为什么后者更好：
 因为只需要两次 DOM 操作：把01234取下来，把43210放上去。中间的reverse操作不会影响DOM。
+
 前者，则需要在 DOM 上操作 4 次。
+
 **DOM 操作会产生重排，影响性能。**
 
 ## traversal 系列 废了
