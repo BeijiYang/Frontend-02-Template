@@ -264,6 +264,64 @@ window.getComputedStyle(element, pseudoElement);
 
 
 
+# CSSOM view
+
+* window.innnerHeight, window.innerWidth 实际的 viewport
+* window.outerHeight, window.outerWidth 带工具栏等等
+* window.devicePixelRatio 屏幕物理像素/代码逻辑像素 比值
+* window.screen
+ * window.screen.width
+ * window.screen.height
+ * window.screen.availWidth
+ * window.screen.availHeight 如手机屏幕会划一部分作为按钮
+<hr />
+
+* window.open('about:blank', "_blank", "width=100,height=100,left=100,right=100");
+* moveTo(x, y) 改变位置
+* moveBy(x, y)
+* resizeTo(x, y) 改变尺寸
+* resizeBy(x, y)
+<hr />
+
+* scrollTop 当前滚动到的位置
+* scrollLeft
+* scrollWidth 可滚动内容的最大宽度
+* scrollHeight
+* scroll(x, y) 也叫 scrollTo，滚动到特定位置
+* scrollBy(x, y) 当前基础上滚动的差值
+* scrollIntoView(x, y) 强制滚动到屏幕的可见区域 https://blog.csdn.net/hyl94/article/details/77472154
+
+* window
+ * scrollX
+ * scrollY
+ * scroll(x, y)
+ * scrollBy(x, y)
+<hr />
+
+**layout** 获取元素真实的位置信息，如做拖拽效果时
+* element.getClientRects() 获取元素生成的所有盒
+* element.getBoundingClientRect() 获取包裹所有内容的盒（最外层）
+
+
+
+ # 其他 API
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
