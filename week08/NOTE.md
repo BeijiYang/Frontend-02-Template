@@ -269,7 +269,9 @@ window.getComputedStyle(element, pseudoElement);
 **用例 2： **
 `getComputedStyle(document.querySelector('a'), '::before').color // lightgreen`
 
-
+**使用场景**
+* 实现拖拽效果 [张鑫旭案例](https://www.zhangxinxu.com/wordpress/2010/03/javascript%E5%AE%9E%E7%8E%B0%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E6%8B%96%E6%8B%BD%E6%95%88%E6%9E%9C/)
+* 用来确定 transition 动画播放进度
 
 # CSSOM view
 
