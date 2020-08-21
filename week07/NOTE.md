@@ -202,3 +202,93 @@ display: run-in，跟随上一个元素。基本没啥用。
 ![](./flex1.jpg)
 ![](./flex2.jpg)
 ![](./flex3.jpg)
+
+
+# 动画
+## Animation
+* keyframes 定义关键帧
+ * from to 或者 百分数
+ * 技巧： 在每个指定的阶段定义 transition 而非 animation-timing-function 来让值发生改变。如此，每个关键帧的 timing-function 都可以不一样。否则，使用 animation-timing-function 后，无法分段指定。
+ ![分段指定](./分段指定.jpg)
+* animation 使用关键帧
+ * animation-name 自己定义的 keyframes
+ * animation-duration 动画时长
+ * animation-timing-function 动画的时间曲线
+ * animation-delay 动画开始前的延迟
+ * animation-iteration-count 动画的播放次数
+ * animation-direction 动画的方向
+
+![animation.jpg](./animation.jpg)
+
+
+## Transition
+* transition-property 要变换的属性
+* transition-duration 变换的时长
+* transition-timing-function 时间曲线
+* transition-delay 延迟
+
+## timing-function: 三次贝塞尔曲线
+cubic-bezier.com
+
+横轴时间，纵轴是属性变化的进展
+
+ease-in 消失时用，ease-out 出现时用
+
+可以拟合抛物线。使用场景：摩擦停止，iPhone 上的 scroll 逐渐停止或者回弹等等。
+
+![cubic-bezier](./cubic-bezier.jpg)
+
+# 颜色
+* RGB: red green blue
+* CMY: 品红 黄 青
+ * CMYK: 品红 黄 青 黑。因为黑是便宜的油墨，尽量多用。
+ 
+![颜色](./颜色.jpg)
+
+* HSL：hue 色相，saturation 纯度，lightness 亮度。中间值是纯色，打满是白色。 W3C 的选择。
+* HSV：hue 色相，saturation 纯度，value/brightness 明度。打满是纯色
+
+![颜色2](./颜色2.jpg)
+
+HSL 重要的原因：语义化的颜色标表示，h 值变化，颜色变化，但明暗关系，颜色鲜艳程度的设计都得以保留，只有色相变化。
+
+![hsl](./hsl.jpg)
+
+![hsl1](./hsl1.jpg)
+![hsl2](./hsl2.jpg)
+![hsl3](./hsl3.jpg)
+
+
+
+# 绘制
+## 分类
+### 几何图形
+ * border
+ * box-shadow
+ * border-radius
+ 
+### 文字
+ * font
+ * text-decoration
+ 
+### 位图
+ * background-image
+
+
+## 依赖图形库
+* 手机 - skia
+* windows - GDI
+
+更下层：shader
+
+
+## 技巧
+不推荐用黑魔法实现几何图形，破坏了语义。
+
+**用 data uri + svg:**
+
+因为可以使用 background-image，所以我们可以把 svg 变成 data uri，在所有需要图片的地方都能用 inilne 的 svg。
+
+![dataurisvg.jpg](./dataurisvg.jpg)
+
+
