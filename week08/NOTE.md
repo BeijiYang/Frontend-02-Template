@@ -1,3 +1,50 @@
+<!--
+
+```
+.
+├── client
+│ └── index.js
+└── server
+ └── server.js
+ 
+ 
+ 
+.
+├── client
+│   ├── ChunkedBodyParser.js
+│   ├── HTMLparser.js
+│   ├── Request.js
+│   ├── ResponseParser.js
+│   ├── index.js
+│   ├── layout.js
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── render.js
+│   └── viewport.jpg
+└── server
+    ├── package-lock.json
+    ├── package.json
+    ├── server.js
+    └── test.html
+    
+    
+    
+.
+├── client
+│   ├── index.js (step one)
+│   ├── parser.js (step two and three)
+│   ├── layout.js (step four)
+│   ├── render.js (step five)
+│   ├── package-lock.json
+│   ├── package.json
+│   └── viewport.jpg (the final result)
+└── server
+    ├── package-lock.json
+    ├── package.json
+    └── server.js
+```
+-->
+
 # 字符引用
 ## 语法
 * 文本实体由 & 开头，; 结尾。如 &lt；
