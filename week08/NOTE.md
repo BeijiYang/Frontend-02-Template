@@ -11,21 +11,20 @@
  
 .
 ├── client
-│   ├── ChunkedBodyParser.js
-│   ├── HTMLparser.js
-│   ├── Request.js
-│   ├── ResponseParser.js
 │   ├── index.js
+│   ├── Request.js
+│   ├── HTMLparser.js
+│   ├── ResponseParser.js
+│   ├── ChunkedBodyParser.js
 │   ├── layout.js
+│   ├── render.js
 │   ├── package-lock.json
 │   ├── package.json
-│   ├── render.js
 │   └── viewport.jpg
 └── server
     ├── package-lock.json
     ├── package.json
-    ├── server.js
-    └── test.html
+    └── server.js
     
     
     
