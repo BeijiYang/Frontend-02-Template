@@ -88,3 +88,36 @@ HTML 中：
 ![](./img/children.jpg)
 
 
+# 构建组件系统
+## 搭建 JSX 环境
+一 装包
+1. `npm init`
+2. `npm install -g webpack wepack-cli` (or by npx)
+3. `npm install --save-dev webpack babel-loader`
+4. `npm install --save-dev @babel/core @babel/preset-env`
+5. `npm install --save-dev @babel/plugin-transform-react-jsx` 以支持 JSX
+
+二 创建 `webpack.config.js`
+```
+module.exports = {
+  entry: "./main.js",
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+            plugins: ["@babel/plugin-transform-react-jsx"]
+          }
+        }
+      }
+    ]
+  },
+  mode: "development"
+}
+```
+
+webpack: 不同文件的 import require 打包到一起
+babel: 把新版本的 JavaScript 翻译为 老版本
