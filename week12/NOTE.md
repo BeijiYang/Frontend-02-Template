@@ -121,3 +121,137 @@ module.exports = {
 
 webpack: 不同文件的 import require 打包到一起
 babel: 把新版本的 JavaScript 翻译为 老版本
+
+
+### 替换 React.createElement
+```
+module.exports = {
+  entry: "./main.js",
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+            plugins: [
+              ["@babel/plugin-transform-react-jsx", { pragma: 'createElement' }] // here
+            ]
+          }
+        }
+      }
+    ]
+  },
+  mode: "development"
+}
+```
+## JSX 本质
+JSX 只不过是用 **看起来像 HTML 标签的形式** 来表示 **函数调用**。
+
+webpack 前：
+```
+const a = <div id="a" />
+```
+
+webpack 后：
+```
+var a = createElement("div", {
+  id: "aa"
+});
+```
+
+### 增加 children
+```
+const a = <div id="aa">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+var a = createElement("div", {
+    id: "aa"
+  },
+  // 递归调用
+  createElement("span", null),
+  createElement("span", null),
+  createElement("span", null)
+);
+
+```
+
+### createElement 参数列表
+
+```
+function createElement(type, attributes, ...children) {
+
+}
+```
+
+其中的
+**`type`**: 如果是 HTML tag，转为字符串；否则按变量名处理。
+**`children`**: 如果 child 是文本，会直接按字符串传入，而不是递归地调用 `createElement(child, null)`，所以需要将其处理为文本节点 textNode
+
+
+```
+function createElement(type, attributes, ...children) {
+  const element = typeof type === 'string'
+    ? new ElementWrapper(type)
+    : new type;
+
+  for (const attr in attributes) {
+    element.setAttribute(attr, attributes[attr]);
+  }
+
+  for (let child of children) {
+    if (typeof child === 'string') {
+      child = new TextNodeWrapper(child);
+    }
+    element.appendChild(child);
+  }
+
+  return element;
+}
+
+class Watch {
+  constructor() {
+    this.root = document.createElement('div');
+  }
+  setAttribute(name, value) {
+    this.root.setAttribute(name, value);
+  }
+  appendChild(child) {
+    this.root.appendChild(child);
+  }
+  mountTo(parent) {
+    parent.appendChild(this.root);
+  }
+}
+
+class ElementWrapper {
+  constructor(type) {
+    this.root = document.createElement(type);
+  }
+  setAttribute(name, value) {
+    this.root.setAttribute(name, value);
+  }
+  appendChild(child) {
+    // this.root.appendChild(child);
+    child.mountTo(this.root);
+  }
+  mountTo(parent) {
+    parent.appendChild(this.root);
+  }
+}
+
+class TextNodeWrapper {
+  constructor(type) {
+    this.root = document.createTextNode(type);
+  }
+
+  mountTo(parent) {
+    parent.appendChild(this.root);
+  }
+}
+
+```
