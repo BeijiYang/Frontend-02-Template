@@ -42,22 +42,30 @@ cancelAnimationFrame(handler);
 # 时间线 timeline 设计
 
 ```
+const TICK = Symbol('tick'); // 利用 Symbol 的唯一性确保私有，外部代码无法访问
+const TICK_HANDLER = Symbol('tick-handler');
+
 class Timeline {
   constructor() {
     // 初始化
+    this[TICK] = () => {
+      console.log('tick');
+      requestAnimationFrame(this[TICK]); // 不断在下一帧时调用自身
+    }
   }
-  
+
   start() {
     // 启动私有的 tick（可以用 Symbol，利用其唯一性，确保文件外无法访问 tick）
+    this[TICK]();
   }
-  
-  set rate() {}
-  get rate() {} // rate 倍速播放
-  
-  pause() {} // 暂停
-  resume() {}  // 恢复
-  
-  reset() {} // 重置
+
+  set rate() { }
+  get rate() { } // rate 倍速播放
+
+  pause() { } // 暂停
+  resume() { }  // 恢复
+
+  reset() { } // 重置
 }
 ```
 
