@@ -18,3 +18,16 @@ touch 系列事件与 mouse 系列事件的区别：touch start 触发时，也�
 鼠标晃动的时候，可以按下键，也可以不按；而 touchmove 无法越过 touchstart 执行。
 特殊的 touchcancel , touch 事件被系统事件等打断
 
+    
+evt.changedTouches 是一个list，因为会有多指
+
+let isPan = false;
+let isTap = true;
+let isPress = false;
+不能是全局，因为有多指触摸、鼠标左右中前进后退五个键
+
+所以改成给 start 等方法传入参数 context
+
+// 封装
+// listen => recoginze => dispatch
+// new Listener(new Recoginzer(dispatch))
